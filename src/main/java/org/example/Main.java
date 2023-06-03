@@ -1,19 +1,31 @@
 package org.example;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import java.util.HashMap;
+
 public class Main {
-    public static void main(String[] args) {
-        // Press Opt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+    public int romanToInt(String s) {
+        HashMap<Character, Integer> symbolValues = new HashMap<>();
+        symbolValues.put('I', 1);
+        symbolValues.put('V', 5);
+        symbolValues.put('X', 10);
+        symbolValues.put('L', 50);
+        symbolValues.put('C', 100);
+        symbolValues.put('D', 500);
+        symbolValues.put('M', 1000);
 
-        // Press Ctrl+R or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        int result = 0;
 
-            // Press Ctrl+D to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Cmd+F8.
-            System.out.println("i = " + i);
+        for (int i = 0; i < s.length(); i++) {
+            int value = symbolValues.get(s.charAt(i));
+
+            if (i < s.length() - 1 && value < symbolValues.get(s.charAt(i + 1))) {
+                result -= value;
+            }
+            else {
+                result += value;
+            }
         }
+        return result;
     }
 }
+
